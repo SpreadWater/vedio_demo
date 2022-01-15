@@ -9,15 +9,15 @@ express+socket.io+webrtc实现一对一视频通话
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  这里是两个项目，client是前端，server是信令服务器
+2.  npm install
+3.  前端：npm run serve 信令服务器：node app
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  信令服务器的证书是openssl生成的，启动之后要访问一下 socket的链接地址 来信任证书
+2.  前端项目要在client/src/api/socket.js里修改 socket的链接地址
+3.  最好在谷歌浏览器里运行
 
 #### 参与贡献
 
