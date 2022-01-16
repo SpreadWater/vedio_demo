@@ -4,7 +4,8 @@ import store from '@/store'
 import { io } from "socket.io-client";
 import { Notification } from 'element-ui'
 // socket地址
-let socket = io("https://<port>:8081/");
+// VUE_APP_MYHOST：vue.config.js中定义的全局变量
+let socket = io(`https://${VUE_APP_MYHOST}:${VUE_APP_SOCKET_SERVER_PORT}/`);
 
 socket.on("connect", (e) => {
     Notification({

@@ -1,5 +1,12 @@
 const fs = require("fs");
 const express = require("express");
+const os = require('os');
+
+// 本机ip
+const myHost = getIPAdress();
+// 启用端口
+let port = 8081
+
 // 前端调起摄像头的功能需要https下
 const { createServer } = require("https");
 
@@ -64,4 +71,20 @@ io.on("connection", (socket) => {
 
 });
 
-httpServer.listen(8081);
+///获取本机ip///
+function getIPAdress() {
+    var interfaces = os.networkInterfaces();
+    for (var devName in interfaces) {
+        var iface = interfaces[devName];
+        for (var i = 0; i < iface.length; i++) {
+            var alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+}
+
+httpServer.listen(port, () => {
+    console.log('把 https://' + myHost + ':' + port + ' 复制到浏览器访问以信任证书')
+});

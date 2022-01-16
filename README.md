@@ -16,8 +16,9 @@ express+socket.io+webrtc实现一对一视频通话
 #### 使用说明
 
 1.  信令服务器的证书是openssl生成的，启动之后要访问一下 socket的链接地址 来信任证书
-2.  前端项目要在client/src/api/socket.js里修改 socket的链接地址
+2.  （注意这里是修改服务端ip与端口）服务端口默认使用8081，地址为本机ip 前端项目可在client/vue.config.js里修改要连接到的 socket服务端口与地址（地址现在是默认获取本机ip的，尽量不要修改，端口可以在server/app.js与vue.config.js中自行修改）
 3.  最好在谷歌浏览器里运行
+
 
 #### 参与贡献
 
