@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 })
 
 io.on("connection", (socket) => {
+    console.log('connection');
     socket.emit('init', { id: socket.id })
     socket.on('join private room', async (arg, cb) => {
         // 判断自己是否有rooms了
@@ -46,10 +47,9 @@ io.on("connection", (socket) => {
             message: '房间已满员',
             success: false,
         })
-
+        // console.log(targetSocket.length);
         // 加入房间
         socket.join(arg.room)
-
         let obj = {
             message: '加入成功',
             success: true,
@@ -60,7 +60,6 @@ io.on("connection", (socket) => {
             obj.start = true
         }
         cb(obj)
-
     })
 
     // 对等浏览器用于信令协商的接口

@@ -62,6 +62,7 @@ export default {
       this.$socketEmit("join private room", {
         room: this.roomName,
       }).then((res) => {
+        console.log(res);
         this.$notify({
           message: res.message,
           type: res.success ? "success" : "warning",
@@ -89,7 +90,7 @@ export default {
           });
         });
     },
-
+    
     // 开始链接
     async startLive(offerSdp) {
       let stream;
@@ -103,6 +104,7 @@ export default {
           // audio: true,
         });
         this.$refs.local_video.srcObject = stream;
+        console.log('获取本地媒体');
       } catch {
         return this.$notify.error({
           message: "摄像头/麦克风获取失败！",
@@ -110,6 +112,7 @@ export default {
       }
       // 2.呼叫者创建一个RTCPeerConnection 并调用 RTCPeerConnection.addTrack()
       stream.getTracks().forEach((track) => {
+        console.log('添加track');
         this.peer.addTrack(track, stream);
       });
 
@@ -144,6 +147,7 @@ export default {
             // 12.呼叫者接受到应答.
             // 13.呼叫者调用 RTCPeerConnection.setRemoteDescription() 将应答设定为远程描述. 如此，呼叫者已经获知连接双方的配置了.
             this.peer.setRemoteDescription(res.answer);
+            console.log('set remote answer-------');
           }
           if (res.candidate) {
             // 除了交换关于媒体的信息(上面提到的Offer / Answer和SDP )中，对等体必须交换关于网络连接的信息。（交换ICE候选）
@@ -164,6 +168,7 @@ export default {
       // 每个Peer建立一个track事件的响应程序，这个事件会在远程Peer添加一个track到其stream上时被触发。
       this.peer.ontrack = (e) => {
         if (e && e.streams) {
+          console.log('ontrack 触发---------');
           this.$refs.remote_video.srcObject = e.streams[0];
           this.loading = false;
         }
