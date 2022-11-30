@@ -1,0 +1,103 @@
+{
+    "basic_buildings": {
+        "airFloors": [
+            {
+                "infrastructure_angle": -0.5,
+                "infrastructure_name": "AirFloor1",
+                "infrastructure_position": {
+                    "x": 1060,
+                    "y": -102,
+                    "z": 380
+                },
+                "infrastructure_repeat": {
+                    "x": 40,
+                    "y": 2
+                },
+                "infrastructure_size": {
+                    "long": 120,
+                    "width": 1020
+                },
+                "infrastructure_texture": " ",
+                "infrastructure_type": "airFloor",
+                "room_id": "A0104"
+            }
+        ],
+        "ceilings": [
+            {
+                "infrastructure_angle": 1.5707963267948966,
+                "infrastructure_name": "ceiling1",
+                "infrastructure_position": {
+                    "x": 1080,
+                    "y": 260,
+                    "z": 672.5
+                },
+                "infrastructure_repeat": {
+                    "x": 20,
+                    "y": 20
+                },
+                "infrastructure_size": {
+                    "long": 1345,
+                    "width": 2150
+                },
+                "infrastructure_texture": " ",
+                "infrastructure_type": "ceiling",
+                "room_id": "A0104"
+            }
+        ],
+        "glassDoors": [
+            {
+                "infrastructure_name": "rightBottomGlassDoor1",
+                "infrastructure_position": {
+                    "x": 1570,
+                    "y": 0,
+                    "z": 380
+                },
+                "infrastructure_rotation": {
+                    "x": 0,
+                    "y": 1.5707963267948966,
+                    "z": 0
+                },
+                "infrastructure_size": {
+                    "long": 205,
+                    "width": 60
+                },
+                "infrastructure_texture": " ",
+                "infrastructure_type": "glassDoor",
+                "room_id": "A0104"
+            }
+        ]
+    },
+    "decorations": [
+        {
+            "infrastructure_name": "airCon1",
+            "infrastructure_position": {
+                "x": 65,
+                "y": 0,
+                "z": 320
+            },
+            "infrastructure_rotation": 1.5707963267948966,
+            "infrastructure_texture": " ",
+            "infrastructure_type": "airCon",
+            "room_id": "A0104"
+        }
+      
+    ],
+    "rack_start_position": [
+        {
+            "x": 580,
+            "y": 260
+        },
+        {
+            "x": 580,
+            "y": 500
+        },
+        {
+            "x": 580,
+            "y": 770
+        },
+        {
+            "x": 580,
+            "y": 1010
+        }
+    ]
+}

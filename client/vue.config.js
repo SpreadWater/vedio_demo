@@ -14,6 +14,7 @@ function getIPAdress() {
         for (var i = 0; i < iface.length; i++) {
             var alias = iface[i];
             if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                console.log( alias.address);
                 return alias.address;
             }
         }
@@ -22,6 +23,7 @@ function getIPAdress() {
 
 
 module.exports = {
+    publicPath: './',
     lintOnSave: false,
     devServer: {
         https: true,

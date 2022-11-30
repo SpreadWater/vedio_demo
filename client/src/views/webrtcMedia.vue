@@ -137,7 +137,28 @@ export default {
 
     // 初始化RTCPeerConnection
     init() {
-      this.peer = new RTCPeerConnection();
+      var defaultConfiguration = {
+      bundlePolicy: "balanced",
+      rtcpMuxPolicy: "require",
+      iceTransportPolicy:"all",//relay
+      // 修改ice数组测试效果，需要进行封装
+      iceServers: [
+        {
+            "urls": [
+                "turn:8.210.95.88:3478?transport=udp",
+                "turn:8.210.95.88:3478?transport=tcp" // 可以插入多个进行备选
+            ],
+            "username": "lqf",
+            "credential": "123456"
+        },
+        {
+            "urls": [
+                "stun:8.210.95.88:3478"
+            ]
+        }
+      ]
+      };
+      this.peer = new RTCPeerConnection(defaultConfiguration);
       this.$socketOn("webrtc", (res) => {
         try {
           if (res.offer) {
@@ -159,7 +180,9 @@ export default {
       });
 
       // 除了交换关于媒体的信息(上面提到的Offer / Answer和SDP )中，对等体必须交换关于网络连接的信息。（交换ICE候选）
+      // 用来在监测到该事件时 将这些 candidates 通过信令通道发送给另一个 Peer。
       this.peer.onicecandidate = (e) => {
+        console.log('ICE Candidate---------',e.candidate);
         if (e.candidate) {
           this.$socketEmit("webrtc", { candidate: e.candidate });
         }
@@ -173,6 +196,15 @@ export default {
           this.loading = false;
         }
       };
+      
+      this.peer.onconnectionstatechange = (e) => {
+
+        console.log("ConnectionStatechange---------->" + this.peer.connectionState);
+      }
+
+      this.peer.oniceconnectionstatechange = (e) => {
+        console.log("IceConnectionStatechange---------->" + this.peer.iceConnectionState);
+      }
     },
   },
   created() {
